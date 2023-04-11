@@ -44,10 +44,8 @@ body {
 .eventContainer {
   display: flex;
   flex-direction: column;
-
   padding: 5px;
-
-  height: 780;
+  height: 980;
   border: 1px solid white;
   max-width: 100%;
 }
