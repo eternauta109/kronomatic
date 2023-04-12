@@ -4,10 +4,7 @@ body {
   font-family: sans-serif;
   text-align: center;
 
-  height: 900px;
-  width: 100%;
 
-  border: 1px solid red;
 }
 
 .App {
@@ -56,4 +53,10 @@ body {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .cinemas-container {
+    max-height: 300px; /* impostare l'altezza massima desiderata */
+  }
 }
