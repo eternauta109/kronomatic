@@ -1,5 +1,6 @@
-import React, { Fragment, useMemo } from "react";
+import React, { Fragment, useMemo, useState } from "react";
 import PropTypes from "prop-types";
+import ModalEvent from "./ModalEvent";
 
 import useStore from "../store/DataContext";
 import dayjs from "dayjs";
@@ -8,7 +9,6 @@ import {
   Calendar,
   Views,
   DateLocalizer,
-  momentLocalizer,
   dayjsLocalizer,
 } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -20,6 +20,10 @@ const localizer = dayjsLocalizer(dayjs);
  * example on the main 'About' page in Storybook
  */
 export default function Basic({ ...props }) {
+  const [open, setOpen] = useState(false);
+  const [event, setEvenet] = useState();
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const { events } = useStore();
 
   const { components, defaultDate, max, views } = useMemo(
@@ -36,8 +40,9 @@ export default function Basic({ ...props }) {
     console.log(person);
     console.log(date);
   };
-  const onSelectEvent = (e) => {
-    console.log(e);
+  const onSelectEvent = (event) => {
+    setEvenet(event);
+    handleOpen();
   };
 
   return (
@@ -60,6 +65,7 @@ export default function Basic({ ...props }) {
           return { style: { backgroundColor } };
         }}
       />
+      <ModalEvent event={event} open={open} handleClose={handleClose} />
     </div>
   );
 }

@@ -1,12 +1,14 @@
 import { useState, useMemo } from "react";
-
-import List from "@mui/material/List";
-
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
+import {
+  ListItemButton,
+  ListItemText,
+  ListItemAvatar,
+  List,
+  Button,
+  Box,
+} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+
 import MovieCreationIcon from "@mui/icons-material/MovieCreation";
 
 import { cinemaDB } from "../database/cinemaDB";
@@ -45,7 +47,7 @@ function Cinemas() {
       // altrimenti, riempio l'array con tutti gli oggetti corrispondenti agli item
       const newSelectedItems = cinemaDB.map((item, index) => ({
         index,
-        name: item.name
+        name: item.name,
       }));
       setSelectedItems(newSelectedItems);
     }
@@ -87,13 +89,13 @@ function Cinemas() {
                 ) // uso il metodo some per controllare se esiste un oggetto con lo stesso indice e nome nell'array
                   ? "green"
                   : "black",
-                color: "white"
+                color: "white",
               },
               "&:hover": {
                 bgcolor: "#7364f7",
                 color: "white",
-                border: "1px solid green"
-              }
+                border: "1px solid green",
+              },
             }}
             selected={selectedItems.some(
               (selectedItem) =>

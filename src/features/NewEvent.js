@@ -86,7 +86,7 @@ function NewEvent() {
         color = "#BB8FCE";
         break;
       case "facilities":
-        color = "#AAB7B8 ";
+        color = "#AAB7B8";
         break;
       default:
         throw new Error("no case select division");
@@ -97,8 +97,8 @@ function NewEvent() {
   return (
     <Box
       sx={{
-        border: "1px solid green",
-        padding: 5,
+        height: "100%",
+        padding: 2,
         mb: 2,
       }}
     >

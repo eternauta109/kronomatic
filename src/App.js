@@ -1,12 +1,10 @@
 import "./styles.css";
-import { useMemo } from "react";
-import Cinemas from "./features/CinemaList";
-import TextField from "@mui/material/TextField";
-import NewEvent from "./features/NewEvent";
-import MyCalendar from "./features/MyCalendar";
+import ShareCalendar from "./features/ShareCalendar";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
-
+import NavBar from "./features/NavBar";
+import WhaShoIdo from "./features/WhaShoIdo";
 import { StoreContext } from "./store/DataContext";
 
 export default function App() {
@@ -19,13 +17,11 @@ export default function App() {
       <CssBaseline />
       <StoreContext>
         <div className="App">
-          <div className="megaContainer">
-            <Cinemas />
-            <div className="calendarContainer">
-              <MyCalendar />
-            </div>
-            <NewEvent />
-          </div>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<ShareCalendar />} />
+            <Route path="/whatsholdido" element={<WhaShoIdo />} />
+          </Routes>
         </div>
       </StoreContext>
     </ThemeProvider>
