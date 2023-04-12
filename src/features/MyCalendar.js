@@ -30,6 +30,16 @@ export default function Basic({ ...props }) {
     []
   );
 
+  const handleSelect = (e) => {
+    let person = prompt("Please enter Event ");
+    let date = e.start;
+    console.log(person);
+    console.log(date);
+  };
+  const onSelectEvent = (e) => {
+    console.log(e);
+  };
+
   return (
     <div className="calendarContainer" {...props}>
       <Calendar
@@ -43,9 +53,9 @@ export default function Basic({ ...props }) {
         selectable={true}
         step={60}
         views={views}
+        onSelectEvent={(event) => onSelectEvent(event)}
+        onSelectSlot={handleSelect}
         eventPropGetter={(event) => {
-          console.log("eeee", event);
-
           const backgroundColor = event.color;
           return { style: { backgroundColor } };
         }}
