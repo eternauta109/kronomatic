@@ -2,6 +2,7 @@ export const initialState = {
   total: 0,
   events: [
     {
+      id: 1,
       color: "#7DCEA0",
       description: "distribuire menu mario",
       division: "operations",
@@ -11,6 +12,7 @@ export const initialState = {
       title: "menu mario",
     },
     {
+      id: 2,
       color: "#F39C12",
       description: "volantini",
       division: "marketing",
@@ -20,6 +22,7 @@ export const initialState = {
       title: "montare stand mario bross",
     },
     {
+      id: 4,
       color: "#BB8FCE",
       description: "prezzare film new",
       division: "pricing",
@@ -29,13 +32,35 @@ export const initialState = {
       title: "prezzare film new",
     },
     {
-      color: "#AAB7B8",
-      description: "smantellamento collonne foyer",
-      division: "facilities",
-      end: new Date(2023, 3, 16), //yyyy,mm,dd
+      id: 5,
+      color: "#EF5350",
+      description: "compilare file ",
+      division: "actionpoint",
+      end: new Date(2023, 3, 23, 10, 30), //yyyy,mm,dd
       note: "",
-      start: new Date(2023, 3, 10),
-      title: "colonne foyer",
+      start: new Date(2023, 3, 23, 15, 0),
+      title: "compilare file",
+    },
+    {
+      id: 6,
+      color: "#448AFF",
+      description: "programmazione",
+      division: "screencontent",
+      end: new Date(2023, 3, 28, 17, 30), //yyyy,mm,dd
+      note: "",
+      start: new Date(2023, 3, 28, 10, 0),
+      title: "programmazione",
+    },
+    {
+      id: 7,
+      color: "#F39C12",
+      description: "nuova carta",
+      division: "marketing",
+      start: new Date(2023, 3, 5),
+      end: new Date(2023, 3, 25), //yyyy,mm,dd
+      note: "reato manageriali",
+
+      title: "nuova carta",
     },
   ],
 };

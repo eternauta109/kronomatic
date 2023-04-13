@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
+import NewEvent from "./NewEvent";
 
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -28,12 +29,7 @@ const ModalEvent = ({ event, open, handleClose }) => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              {event.title}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {event.description}
-            </Typography>
+            <NewEvent event={event} />
           </Box>
         </Modal>
       )}

@@ -36,14 +36,15 @@ const MenuProps = {
   },
 };
 
-function NewEvent() {
+function NewEvent({ event }) {
   const [cinemaSelect, setCinemaSelect] = useState([]);
   const [newEvent, setNewEvent] = useState({});
+  const [upDate, setUpDate] = useState(false);
   const [dateRange, setDateRange] = React.useState([dayjs(), dayjs()]);
   const { events, addEvent } = useStore();
 
   console.log(events);
-
+  console.log(event);
   const theme = useTheme();
 
   useMemo(() => {
@@ -88,11 +89,25 @@ function NewEvent() {
       case "facilities":
         color = "#AAB7B8";
         break;
+      case "screencontent":
+        color = "#448AFF";
+        break;
+      case "actionpoint":
+        color = "#EF5350";
+        break;
       default:
         throw new Error("no case select division");
     }
     setNewEvent({ ...newEvent, division: e.target.value, color: color });
   };
+  useEffect(() => {
+    if (event) {
+      setUpDate(true);
+      setNewEvent({ ...event });
+    }
+
+    return () => {};
+  }, []);
 
   return (
     <Box
@@ -102,6 +117,11 @@ function NewEvent() {
         mb: 2,
       }}
     >
+      {upDate && (
+        <Button variant="contained" sx={{ m: 2 }}>
+          Done
+        </Button>
+      )}
       <form onSubmit={onSubmit}>
         <TextField
           fullWidth
@@ -163,6 +183,8 @@ function NewEvent() {
             </MenuItem>
             <MenuItem value={"pricing"}>pricing</MenuItem>
             <MenuItem value={"facilities"}>facilities</MenuItem>
+            <MenuItem value={"screencontent"}>screen conten</MenuItem>
+            <MenuItem value={"actionpoint"}>action point</MenuItem>
           </Select>
         </FormControl>
         {/* cinema coinvolti */}
@@ -200,7 +222,7 @@ function NewEvent() {
           sx={{ mt: 2, mb: 2 }}
         />
         <Button fullWidth variant="outlined" type="submit" color="secondary">
-          Save
+          {upDate ? "updates" : "save"}
         </Button>
       </form>
     </Box>
