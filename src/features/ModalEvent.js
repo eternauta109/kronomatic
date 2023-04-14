@@ -29,7 +29,7 @@ const ModalEvent = ({ event, open, handleClose }) => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <NewEvent event={event} />
+            <NewEvent event={event} handleClose={handleClose} />
           </Box>
         </Modal>
       )}

@@ -14,10 +14,28 @@ export const StoreContext = ({ children }) => {
     });
   };
 
+  /* 
+var items = [ {id:2}, {id:2}, {id:2}];
+var item = {...};
+var foundIndex = items.findIndex(x => x.id == item.id);
+items[foundIndex] = item;
+*/
+
+  const upDateEvent = (event, id) => {
+    let updateEvents = state.events;
+    let updateEvent = state.events.findIndex((e) => e.id === id);
+    updateEvents[updateEvent] = event;
+    dispatch({
+      type: "UPDATE_EVENT",
+      payload: { events: updateEvents },
+    });
+  };
+
   const value = {
     total: state.total,
     events: state.events,
     addEvent,
+    upDateEvent,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

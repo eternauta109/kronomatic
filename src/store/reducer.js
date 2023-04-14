@@ -72,6 +72,9 @@ const eventsReducer = (state, action) => {
     case "ADD_EVENT":
       console.log("ADD_EVENT", payload);
       return { ...state, events: payload.events };
+    case "UPDATE_EVENT":
+      console.log("UPDATE_EVENT", payload);
+      return { ...state, events: payload.events };
 
     default:
       throw new Error("no case for type", type);

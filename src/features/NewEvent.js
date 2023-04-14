@@ -36,12 +36,12 @@ const MenuProps = {
   },
 };
 
-function NewEvent({ event }) {
+function NewEvent({ event, handleClose }) {
   const [cinemaSelect, setCinemaSelect] = useState([]);
   const [newEvent, setNewEvent] = useState({});
   const [upDate, setUpDate] = useState(false);
   const [dateRange, setDateRange] = React.useState([dayjs(), dayjs()]);
-  const { events, addEvent } = useStore();
+  const { events, addEvent, upDateEvent } = useStore();
 
   console.log(events);
   console.log(event);
@@ -62,8 +62,12 @@ function NewEvent({ event }) {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-    addEvent(newEvent);
-    console.log(newEvent);
+    if (upDate) {
+      upDateEvent(newEvent, newEvent.id);
+      handleClose();
+    } else {
+      addEvent(newEvent);
+    }
   };
 
   const handleChangeForm = (e) => {
