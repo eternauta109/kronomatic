@@ -1,10 +1,10 @@
 import "./styles.css";
-import ShareCalendar from "./features/ShareCalendar";
+import ShareCalendar from "./features/calendar/ShareCalendar";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBar from "./features/NavBar";
-import WhaShoIdo from "./features/WhaShoIdo";
+import WhatShouldIdo from "./features/whatshould/CardForWhatIShould";
 
 import { StoreContext } from "./store/DataContext";
 import Kanban from "./features/kanban_board/Kanban";
@@ -22,7 +22,7 @@ export default function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<ShareCalendar />} />
-            <Route path="/whatsholdido" element={<WhaShoIdo />} />
+            <Route path="/whatsholdido" element={<WhatShouldIdo />} />
             <Route path="/kanban" element={<Kanban />} />
           </Routes>
         </div>

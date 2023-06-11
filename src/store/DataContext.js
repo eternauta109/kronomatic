@@ -22,6 +22,7 @@ items[foundIndex] = item;
 */
 
   const upDateEvent = (event, id) => {
+    console.log("store up date vent", event, id);
     let updateEvents = state.events;
     let updateEvent = state.events.findIndex((e) => e.id === id);
     updateEvents[updateEvent] = event;
@@ -32,10 +33,10 @@ items[foundIndex] = item;
   };
 
   const getEvents = () => {
-  dispatch({
-    type: "GET_EVENTS",
-  });
-};
+    dispatch({
+      type: "GET_EVENTS",
+    });
+  };
 
   const value = {
     total: state.total,

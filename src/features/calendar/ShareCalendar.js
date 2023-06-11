@@ -1,9 +1,9 @@
 import React from "react";
 
-import Cinemas from "./CinemaList";
+import Cinemas from "../CinemaList";
 
 import { Container, Grid } from "@mui/material";
-import NewEvent from "./NewEvent";
+import NewEvent from "../event/NewEvent";
 import MyCalendar from "./MyCalendar";
 
 const ShareCalendar = () => {

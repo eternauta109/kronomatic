@@ -1,11 +1,8 @@
-import { COLUMN_NAMES } from ".././database/constants";
-const { DO_IT } = COLUMN_NAMES;
-
 export const initialState = {
   total: 0,
   events: [
     {
-      id: 1,
+      id: "nota1",
       color: "#7DCEA0",
       description: "distribuire menu mario",
       division: "operations",
@@ -13,10 +10,10 @@ export const initialState = {
       note: "reato manageriali",
       start: new Date(2023, 3, 10),
       title: "menu mario",
-      column: DO_IT,
+      laneId: "lane1",
     },
     {
-      id: 2,
+      id: "nota2",
       color: "#F39C12",
       description: "volantini",
       division: "marketing",
@@ -24,10 +21,10 @@ export const initialState = {
       note: "reato manageriali",
       start: new Date(2023, 3, 5),
       title: "montare stand mario bross",
-      column: DO_IT,
+      laneId: "lane1",
     },
     {
-      id: 4,
+      id: "nota3",
       color: "#BB8FCE",
       description: "prezzare film new",
       division: "pricing",
@@ -35,10 +32,10 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 15),
       title: "prezzare film new",
-      column: DO_IT,
+      laneId: "lane1",
     },
     {
-      id: 5,
+      id: "nota4",
       color: "#EF5350",
       description: "compilare file ",
       division: "actionpoint",
@@ -46,10 +43,10 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 23, 15, 0),
       title: "compilare file",
-      column: DO_IT,
+      laneId: "lane1",
     },
     {
-      id: 6,
+      id: "nota5",
       color: "#448AFF",
       description: "programmazione",
       division: "screencontent",
@@ -57,10 +54,10 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 28, 10, 0),
       title: "programmazione",
-      column: DO_IT,
+      laneId: "lane1",
     },
     {
-      id: 7,
+      id: "nota6",
       color: "#90A4AE",
       description: "zerocalcare",
       division: "brief",
@@ -68,17 +65,18 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 28, 14, 0),
       title: "zero calcare",
+      laneId: "lane1",
     },
     {
-      id: 8,
+      id: "nota7",
       color: "#F39C12",
       description: "nuova carta",
       division: "marketing",
       start: new Date(2023, 3, 5),
       end: new Date(2023, 3, 25), //yyyy,mm,dd
       note: "reato manageriali",
-      column: DO_IT,
-      title: "nuova carta",
+      title: "loffio",
+      laneId: "lane2",
     },
   ],
 };

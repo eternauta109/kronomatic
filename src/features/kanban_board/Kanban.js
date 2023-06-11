@@ -33,27 +33,52 @@ const dataInit = {
 
 const Kanban = () => {
   const [data, setData] = useState(dataInit);
-  const { events } = useStore();
+  const { events, upDateEvent } = useStore();
 
   useEffect(() => {
     // Aggiorna gli eventi nella prima corsia (lane1)
     const updatedData = {
-      ...data,
-      lanes: [
-        {
-          ...data.lanes[0],
-          cards: events, // Aggiungi gli eventi alla prima corsia
-        },
-        ...data.lanes.slice(1), // Mantieni le altre corsie invariate
-      ],
+      lanes: data.lanes.map((lane) => ({
+        ...lane,
+        cards: events.filter((event) => event.laneId === lane.id),
+      })),
     };
+
+    setData(updatedData);
 
     // Aggiorna il valore di data
     setData(updatedData);
   }, [events]);
 
+  const onCardClicked = (e, d) => {
+    console.log(e, d);
+    const finder = events.find((event) => event.id === e);
+    console.log("finder", finder);
+  };
+
+  const handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
+    console.log("drag ended");
+    console.log(`cardId: ${cardId}`);
+    console.log(`sourceLaneId: ${sourceLaneId}`);
+    console.log(`targetLaneId: ${targetLaneId}`);
+    const finder = events.find((event) => event.id === cardId);
+    const newEvent = { ...finder, laneId: targetLaneId };
+    upDateEvent(newEvent, cardId);
+  };
+
   console.log(events);
-  return <Board data={data} />;
+  return (
+    <div>
+      matio
+      <Board
+        data={data}
+        onCardClick={onCardClicked}
+        handleDragEnd={handleDragEnd}
+      />
+      livio
+      <Board data={data} />
+    </div>
+  );
 };
 
 export default Kanban;

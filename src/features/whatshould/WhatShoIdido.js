@@ -2,7 +2,7 @@ import { Card, Container, Box, Typography } from "@mui/material";
 import CardForWhatIShould from "./CardForWhatIShould";
 import React from "react";
 
-const WhaShoIdo = () => {
+const WhatShouldIdo = () => {
   return (
     <Container>
       <Typography variant="h2" font-size="20" sx={{ m: 5 }}>
@@ -65,4 +65,4 @@ const WhaShoIdo = () => {
   );
 };
 
-export default WhaShoIdo;
+export default WhatShouldIdo;
