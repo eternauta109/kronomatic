@@ -35,6 +35,10 @@ function NavBar() {
       case "what should i do when..":
         navigate("/whatsholdido");
         break;
+      case "KanBanBoard":
+        console.log("oooo");
+        navigate("/kanban");
+        break;
       case "ShareCalendar":
         navigate("/");
         break;

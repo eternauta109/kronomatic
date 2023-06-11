@@ -1,3 +1,6 @@
+import { COLUMN_NAMES } from ".././database/constants";
+const { DO_IT } = COLUMN_NAMES;
+
 export const initialState = {
   total: 0,
   events: [
@@ -10,6 +13,7 @@ export const initialState = {
       note: "reato manageriali",
       start: new Date(2023, 3, 10),
       title: "menu mario",
+      column: DO_IT,
     },
     {
       id: 2,
@@ -20,6 +24,7 @@ export const initialState = {
       note: "reato manageriali",
       start: new Date(2023, 3, 5),
       title: "montare stand mario bross",
+      column: DO_IT,
     },
     {
       id: 4,
@@ -30,6 +35,7 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 15),
       title: "prezzare film new",
+      column: DO_IT,
     },
     {
       id: 5,
@@ -40,6 +46,7 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 23, 15, 0),
       title: "compilare file",
+      column: DO_IT,
     },
     {
       id: 6,
@@ -50,6 +57,7 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 28, 10, 0),
       title: "programmazione",
+      column: DO_IT,
     },
     {
       id: 7,
@@ -59,7 +67,7 @@ export const initialState = {
       start: new Date(2023, 3, 5),
       end: new Date(2023, 3, 25), //yyyy,mm,dd
       note: "reato manageriali",
-
+      column: DO_IT,
       title: "nuova carta",
     },
   ],
@@ -75,6 +83,9 @@ const eventsReducer = (state, action) => {
     case "UPDATE_EVENT":
       console.log("UPDATE_EVENT", payload);
       return { ...state, events: payload.events };
+    case "GET_EVENTS":
+      console.log("GET_EVENTS", payload);
+      return { events: payload.events };
 
     default:
       throw new Error("no case for type", type);
