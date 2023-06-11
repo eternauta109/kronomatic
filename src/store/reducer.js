@@ -53,6 +53,16 @@ export const initialState = {
     },
     {
       id: 7,
+      color: "#90A4AE",
+      description: "zerocalcare",
+      division: "brief",
+      end: new Date(2023, 3, 28, 23, 30), //yyyy,mm,dd
+      note: "",
+      start: new Date(2023, 3, 28, 14, 0),
+      title: "zero calcare",
+    },
+    {
+      id: 8,
       color: "#F39C12",
       description: "nuova carta",
       division: "marketing",

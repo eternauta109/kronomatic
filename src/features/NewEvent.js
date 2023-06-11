@@ -25,6 +25,15 @@ function getStyles(name, personName, theme) {
   };
 }
 
+function getStylesManager(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -38,10 +47,13 @@ const MenuProps = {
 
 function NewEvent({ event, handleClose }) {
   const [cinemaSelect, setCinemaSelect] = useState([]);
+  const [manager, setManager] = useState([]);
   const [newEvent, setNewEvent] = useState({});
   const [upDate, setUpDate] = useState(false);
   const [dateRange, setDateRange] = React.useState([dayjs(), dayjs()]);
   const { events, addEvent, upDateEvent } = useStore();
+  const managers = cinemaDB[0].managers;
+  console.log(managers);
 
   console.log(events);
   console.log(event);
@@ -56,6 +68,16 @@ function NewEvent({ event, handleClose }) {
       target: { value },
     } = event;
     setCinemaSelect(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+  const handleChangeManager = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setManager(
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
@@ -98,6 +120,9 @@ function NewEvent({ event, handleClose }) {
         break;
       case "actionpoint":
         color = "#EF5350";
+        break;
+      case "brief":
+        color = "#90A4AE";
         break;
       default:
         throw new Error("no case select division");
@@ -189,6 +214,7 @@ function NewEvent({ event, handleClose }) {
             <MenuItem value={"facilities"}>facilities</MenuItem>
             <MenuItem value={"screencontent"}>screen conten</MenuItem>
             <MenuItem value={"actionpoint"}>action point</MenuItem>
+            <MenuItem value={"brief"}>new brief</MenuItem>
           </Select>
         </FormControl>
         {/* cinema coinvolti */}
@@ -214,6 +240,38 @@ function NewEvent({ event, handleClose }) {
             ))}
           </Select>
         </FormControl>
+        <FormControl fullWidth sx={{ mt: 2, maxWidth: 400 }}>
+          <InputLabel id="owner">person in charge</InputLabel>
+          <Select
+            multiple
+            labelId="owner"
+            value={manager}
+            onChange={handleChangeManager}
+            MenuProps={MenuProps}
+            input={<OutlinedInput label="person in charge" />}
+          >
+            {managers.map((el, key) => (
+              <MenuItem
+                key={key}
+                value={el}
+                style={getStylesManager(el, manager, theme)}
+              >
+                {el}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <TextField
+          fullWidth
+          label="link egnyte"
+          variant="outlined"
+          size="small"
+          name="egnyte"
+          value={newEvent?.egenyte ? newEvent.egnyte : ""}
+          onChange={handleChangeForm}
+          rows={1}
+          sx={{ mt: 2, mb: 2 }}
+        />
         <TextField
           fullWidth
           label="some note"

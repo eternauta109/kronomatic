@@ -1,5 +1,6 @@
 export const cinemaDB = [
   {
+    managers: ["ricotti", "surian", "zanobi", "gabriele", "guerrini", "conti"],
     name: "parco",
     screens: 18,
     seats: 4017,
@@ -22,8 +23,8 @@ export const cinemaDB = [
       { screen: 16, seats: 150 },
       { screen: 17, seats: 173 },
       { screen: 18, seats: 259 },
-      { screen: "all", seats: 4017 }
-    ]
+      { screen: "all", seats: 4017 },
+    ],
   },
   {
     name: "beinasco",
@@ -39,8 +40,8 @@ export const cinemaDB = [
       { screen: 7, seats: 240 },
       { screen: 8, seats: 120 },
       { screen: 9, seats: 120 },
-      { screen: "all", seats: 2385 }
-    ]
+      { screen: "all", seats: 2385 },
+    ],
   },
   {
     name: "belpasso",
@@ -60,8 +61,8 @@ export const cinemaDB = [
       { screen: 11, seats: 232 },
       { screen: 12, seats: 203 },
 
-      { screen: "all", seats: 2404 }
-    ]
+      { screen: "all", seats: 2404 },
+    ],
   },
   {
     name: "bologna",
@@ -77,8 +78,8 @@ export const cinemaDB = [
       { screen: 7, seats: 152 },
       { screen: 8, seats: 152 },
       { screen: 9, seats: 191 },
-      { screen: "all", seats: 2404 }
-    ]
+      { screen: "all", seats: 2404 },
+    ],
   },
   {
     name: "casamassima",
@@ -94,8 +95,8 @@ export const cinemaDB = [
       { screen: 7, seats: 165 },
       { screen: 8, seats: 134 },
       { screen: 9, seats: 241 },
-      { screen: "all", seats: 1989 }
-    ]
+      { screen: "all", seats: 1989 },
+    ],
   },
   {
     name: "catanzaro",
@@ -109,8 +110,8 @@ export const cinemaDB = [
       { screen: 5, seats: 133 },
       { screen: 6, seats: 143 },
       { screen: 7, seats: 102 },
-      { screen: "all", seats: 1221 }
-    ]
+      { screen: "all", seats: 1221 },
+    ],
   },
   {
     name: "cerro",
@@ -128,8 +129,8 @@ export const cinemaDB = [
       { screen: 9, seats: 146 },
       { screen: 10, seats: 201 },
       { screen: 11, seats: 165 },
-      { screen: "all", seats: 2390 }
-    ]
+      { screen: "all", seats: 2390 },
+    ],
   },
   {
     name: "corciano",
@@ -147,8 +148,8 @@ export const cinemaDB = [
       { screen: 9, seats: 197 },
       { screen: 10, seats: 98 },
       { screen: 11, seats: 105 },
-      { screen: "all", seats: 2404 }
-    ]
+      { screen: "all", seats: 2404 },
+    ],
   },
   {
     name: "firenze",
@@ -163,8 +164,8 @@ export const cinemaDB = [
       { screen: 6, seats: 464 },
       { screen: 7, seats: 138 },
       { screen: 8, seats: 231 },
-      { screen: "all", seats: 1885 }
-    ]
+      { screen: "all", seats: 1885 },
+    ],
   },
   {
     name: "genova",
@@ -181,8 +182,8 @@ export const cinemaDB = [
       { screen: 8, seats: 173 },
       { screen: 9, seats: 111 },
       { screen: 10, seats: 111 },
-      { screen: "all", seats: 1809 }
-    ]
+      { screen: "all", seats: 1809 },
+    ],
   },
   {
     name: "grosseto",
@@ -196,8 +197,8 @@ export const cinemaDB = [
       { screen: 5, seats: 111 },
       { screen: 6, seats: 111 },
       { screen: 7, seats: 111 },
-      { screen: "all", seats: 1210 }
-    ]
+      { screen: "all", seats: 1210 },
+    ],
   },
   {
     name: "guidonia",
@@ -214,8 +215,8 @@ export const cinemaDB = [
       { screen: 8, seats: 253 },
       { screen: 9, seats: 131 },
       { screen: 10, seats: 313 },
-      { screen: "all", seats: 2412 }
-    ]
+      { screen: "all", seats: 2412 },
+    ],
   },
   {
     name: "lamezia",
@@ -227,8 +228,8 @@ export const cinemaDB = [
       { screen: 3, seats: 141 },
       { screen: 4, seats: 88 },
       { screen: 5, seats: 88 },
-      { screen: "all", seats: 985 }
-    ]
+      { screen: "all", seats: 985 },
+    ],
   },
   {
     name: "limena",
@@ -249,8 +250,8 @@ export const cinemaDB = [
       { screen: 12, seats: 126 },
       { screen: 13, seats: 126 },
       { screen: 14, seats: 114 },
-      { screen: "all", seats: 3098 }
-    ]
+      { screen: "all", seats: 3098 },
+    ],
   },
   {
     name: "livorno",
@@ -266,8 +267,8 @@ export const cinemaDB = [
       { screen: 7, seats: 137 },
       { screen: 8, seats: 232 },
       { screen: 9, seats: 212 },
-      { screen: "all", seats: 2175 }
-    ]
+      { screen: "all", seats: 2175 },
+    ],
   },
   {
     name: "lugagnano",
@@ -282,8 +283,8 @@ export const cinemaDB = [
       { screen: 6, seats: 125 },
       { screen: 7, seats: 195 },
       { screen: 8, seats: 249 },
-      { screen: "all", seats: 1117 }
-    ]
+      { screen: "all", seats: 1117 },
+    ],
   },
   {
     name: "odeon",
@@ -300,8 +301,8 @@ export const cinemaDB = [
       { screen: 8, seats: 70 },
       { screen: 9, seats: 112 },
       { screen: 10, seats: 32 },
-      { screen: "all", seats: 2222 }
-    ]
+      { screen: "all", seats: 2222 },
+    ],
   },
   {
     name: "montebello",
@@ -317,8 +318,8 @@ export const cinemaDB = [
       { screen: 7, seats: 146 },
       { screen: 8, seats: 186 },
       { screen: 9, seats: 122 },
-      { screen: "all", seats: 1835 }
-    ]
+      { screen: "all", seats: 1835 },
+    ],
   },
   {
     name: "montesilvano",
@@ -336,8 +337,8 @@ export const cinemaDB = [
       { screen: 9, seats: 143 },
       { screen: 10, seats: 137 },
       { screen: 11, seats: 180 },
-      { screen: "all", seats: 2040 }
-    ]
+      { screen: "all", seats: 2040 },
+    ],
   },
   {
     name: "napoli",
@@ -355,8 +356,8 @@ export const cinemaDB = [
       { screen: 9, seats: 185 },
       { screen: 10, seats: 188 },
       { screen: 11, seats: 198 },
-      { screen: "all", seats: 2684 }
-    ]
+      { screen: "all", seats: 2684 },
+    ],
   },
   {
     name: "nola",
@@ -372,8 +373,8 @@ export const cinemaDB = [
       { screen: 7, seats: 145 },
       { screen: 8, seats: 145 },
       { screen: 9, seats: 207 },
-      { screen: "all", seats: 2049 }
-    ]
+      { screen: "all", seats: 2049 },
+    ],
   },
   {
     name: "campus",
@@ -392,8 +393,8 @@ export const cinemaDB = [
       { screen: 10, seats: 102 },
       { screen: 11, seats: 202 },
       { screen: 12, seats: 138 },
-      { screen: "all", seats: 2451 }
-    ]
+      { screen: "all", seats: 2451 },
+    ],
   },
   {
     name: "parma",
@@ -407,8 +408,8 @@ export const cinemaDB = [
       { screen: 5, seats: 106 },
       { screen: 6, seats: 99 },
       { screen: 7, seats: 40 },
-      { screen: "all", seats: 1405 }
-    ]
+      { screen: "all", seats: 1405 },
+    ],
   },
   {
     name: "pradamano",
@@ -427,8 +428,8 @@ export const cinemaDB = [
       { screen: 10, seats: 202 },
       { screen: 11, seats: 104 },
       { screen: 12, seats: 332 },
-      { screen: "all", seats: 2472 }
-    ]
+      { screen: "all", seats: 2472 },
+    ],
   },
   {
     name: "quartucciu",
@@ -448,8 +449,8 @@ export const cinemaDB = [
       { screen: 11, seats: 57 },
       { screen: 12, seats: 96 },
       { screen: 13, seats: 63 },
-      { screen: "all", seats: 1772 }
-    ]
+      { screen: "all", seats: 1772 },
+    ],
   },
   {
     name: "moderno",
@@ -461,8 +462,8 @@ export const cinemaDB = [
       { screen: 3, seats: 440 },
       { screen: 4, seats: 186 },
       { screen: 5, seats: 127 },
-      { screen: "all", seats: 1112 }
-    ]
+      { screen: "all", seats: 1112 },
+    ],
   },
   {
     name: "rozzano",
@@ -482,8 +483,8 @@ export const cinemaDB = [
       { screen: 11, seats: 249 },
       { screen: 12, seats: 293 },
       { screen: 13, seats: 504 },
-      { screen: "all", seats: 2876 }
-    ]
+      { screen: "all", seats: 2876 },
+    ],
   },
   {
     name: "salerno",
@@ -501,8 +502,8 @@ export const cinemaDB = [
       { screen: 9, seats: 153 },
       { screen: 10, seats: 153 },
       { screen: 11, seats: 323 },
-      { screen: "all", seats: 2448 }
-    ]
+      { screen: "all", seats: 2448 },
+    ],
   },
   {
     name: "sestu",
@@ -521,8 +522,8 @@ export const cinemaDB = [
       { screen: 10, seats: 60 },
       { screen: 11, seats: 83 },
       { screen: 12, seats: 90 },
-      { screen: "all", seats: 1629 }
-    ]
+      { screen: "all", seats: 1629 },
+    ],
   },
   {
     name: "silea",
@@ -541,8 +542,8 @@ export const cinemaDB = [
       { screen: 10, seats: 224 },
       { screen: 11, seats: 120 },
       { screen: 12, seats: 333 },
-      { screen: "all", seats: 2682 }
-    ]
+      { screen: "all", seats: 2682 },
+    ],
   },
   {
     name: "surbo",
@@ -558,8 +559,8 @@ export const cinemaDB = [
       { screen: 7, seats: 316 },
       { screen: 8, seats: 253 },
       { screen: 9, seats: 253 },
-      { screen: "all", seats: 2410 }
-    ]
+      { screen: "all", seats: 2410 },
+    ],
   },
   {
     name: "terni",
@@ -575,8 +576,8 @@ export const cinemaDB = [
       { screen: 7, seats: 172 },
       { screen: 8, seats: 252 },
       { screen: 9, seats: 251 },
-      { screen: "all", seats: 2120 }
-    ]
+      { screen: "all", seats: 2120 },
+    ],
   },
   {
     name: "torino",
@@ -591,8 +592,8 @@ export const cinemaDB = [
       { screen: 6, seats: 154 },
       { screen: 7, seats: 127 },
       { screen: 8, seats: 119 },
-      { screen: "all", seats: 1247 }
-    ]
+      { screen: "all", seats: 1247 },
+    ],
   },
   {
     name: "torri",
@@ -608,8 +609,8 @@ export const cinemaDB = [
       { screen: 7, seats: 82 },
       { screen: 8, seats: 48 },
       { screen: 9, seats: 81 },
-      { screen: "all", seats: 760 }
-    ]
+      { screen: "all", seats: 760 },
+    ],
   },
   {
     name: "trieste",
@@ -623,8 +624,8 @@ export const cinemaDB = [
       { screen: 5, seats: 164 },
       { screen: 6, seats: 137 },
       { screen: 7, seats: 137 },
-      { screen: "all", seats: 1252 }
-    ]
+      { screen: "all", seats: 1252 },
+    ],
   },
   {
     name: "vimercate",
@@ -647,7 +648,7 @@ export const cinemaDB = [
       { screen: 14, seats: 140 },
       { screen: 15, seats: 296 },
       { screen: 16, seats: 459 },
-      { screen: "all", seats: 3897 }
-    ]
-  }
+      { screen: "all", seats: 3897 },
+    ],
+  },
 ];
