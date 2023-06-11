@@ -5,7 +5,9 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBar from "./features/NavBar";
 import WhaShoIdo from "./features/WhaShoIdo";
+
 import { StoreContext } from "./store/DataContext";
+import Kanban from "./features/kanban_board/Kanban";
 
 export default function App() {
   const theme = createTheme({
@@ -21,6 +23,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<ShareCalendar />} />
             <Route path="/whatsholdido" element={<WhaShoIdo />} />
+            <Route path="/kanban" element={<Kanban />} />
           </Routes>
         </div>
       </StoreContext>

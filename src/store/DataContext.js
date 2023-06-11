@@ -31,11 +31,18 @@ items[foundIndex] = item;
     });
   };
 
+  const getEvents = () => {
+  dispatch({
+    type: "GET_EVENTS",
+  });
+};
+
   const value = {
     total: state.total,
     events: state.events,
     addEvent,
     upDateEvent,
+    getEvents,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
