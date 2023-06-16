@@ -83,12 +83,19 @@ function NewEvent({ event, handleClose }) {
     );
   };
   const onSubmit = (event) => {
+    console.log("quiiii");
     event.preventDefault();
     if (upDate) {
       upDateEvent(newEvent, newEvent.id);
       handleClose();
     } else {
-      addEvent(newEvent);
+      const eventBis = {
+        ...newEvent,
+        laneId: "lane1",
+        id: `nota${events.length + 1}`,
+      };
+      console.log("newevent", newEvent);
+      addEvent(eventBis);
     }
   };
 
