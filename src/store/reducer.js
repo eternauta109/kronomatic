@@ -10,6 +10,7 @@ export const initialState = {
       note: "reato manageriali",
       start: new Date(2023, 3, 10),
       title: "menu mario",
+      responsible: null,
       laneId: "lane1",
     },
     {
@@ -21,6 +22,7 @@ export const initialState = {
       note: "reato manageriali",
       start: new Date(2023, 3, 5),
       title: "montare stand mario bross",
+      responsible: null,
       laneId: "lane1",
     },
     {
@@ -32,6 +34,7 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 15),
       title: "prezzare film new",
+      responsible: null,
       laneId: "lane1",
     },
     {
@@ -43,6 +46,7 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 23, 15, 0),
       title: "compilare file",
+      responsible: null,
       laneId: "lane1",
     },
     {
@@ -54,6 +58,7 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 28, 10, 0),
       title: "programmazione",
+      responsible: null,
       laneId: "lane1",
     },
     {
@@ -65,6 +70,7 @@ export const initialState = {
       note: "",
       start: new Date(2023, 3, 28, 14, 0),
       title: "zero calcare",
+      responsible: null,
       laneId: "lane1",
     },
     {
@@ -76,6 +82,7 @@ export const initialState = {
       end: new Date(2023, 3, 25), //yyyy,mm,dd
       note: "reato manageriali",
       title: "loffio",
+      responsible: null,
       laneId: "lane2",
     },
   ],

@@ -6,7 +6,7 @@ const WhatShouldIdo = () => {
   return (
     <Container>
       <Typography variant="h2" font-size="20" sx={{ m: 5 }}>
-        What i should when
+        What i should when...
       </Typography>
 
       <Box spacing={1} sx={{ mb: 2, display: "flex", flexWrap: "wrap" }}>

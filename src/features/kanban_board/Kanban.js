@@ -1,4 +1,5 @@
 import Board from "react-trello";
+import { Container, Typography, Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import useStore from "../.././store/DataContext";
 import { cinemaDB } from "../.././database/cinemaDB";
@@ -72,41 +73,25 @@ const Kanban = () => {
 
   console.log(events);
   return (
-    <div>
-      mario
-      <Board
-        style={{ height: "500px" }}
-        data={data}
-        onCardClick={onCardClicked}
-        handleDragEnd={handleDragEnd}
-        laneStyle={{
-          maxHeight: "450px",
-          overflowY: "auto", // Opzionale: aggiunge una barra di scorrimento quando il contenuto supera l'altezza massima
-        }}
-      />
-      antonio
-      <Board
-        style={{ height: "500px" }}
-        data={data}
-        onCardClick={onCardClicked}
-        handleDragEnd={handleDragEnd}
-        laneStyle={{
-          maxHeight: "450px",
-          overflowY: "auto", // Opzionale: aggiunge una barra di scorrimento quando il contenuto supera l'altezza massima
-        }}
-      />
-      paolo
-      <Board
-        style={{ height: "500px" }}
-        data={data}
-        onCardClick={onCardClicked}
-        handleDragEnd={handleDragEnd}
-        laneStyle={{
-          maxHeight: "450px",
-          overflowY: "auto", // Opzionale: aggiunge una barra di scorrimento quando il contenuto supera l'altezza massima
-        }}
-      />
-    </div>
+    <Container>
+      {managers.map((manager) => {
+        return (
+          <Box sx={{ mt: "30px" }}>
+            <Typography>{manager}</Typography>
+            <Board
+              style={{ height: "500px" }}
+              data={data}
+              onCardClick={onCardClicked}
+              handleDragEnd={handleDragEnd}
+              laneStyle={{
+                maxHeight: "450px",
+                overflowY: "auto", // Opzionale: aggiunge una barra di scorrimento quando il contenuto supera l'altezza massima
+              }}
+            />
+          </Box>
+        );
+      })}
+    </Container>
   );
 };
 
