@@ -1,6 +1,8 @@
 import Board from "react-trello";
+import { Container, Typography, Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import useStore from "../.././store/DataContext";
+import { cinemaDB } from "../.././database/cinemaDB";
 
 const dataInit = {
   lanes: [
@@ -35,6 +37,9 @@ const Kanban = () => {
   const [data, setData] = useState(dataInit);
   const { events, upDateEvent } = useStore();
 
+  const managers = cinemaDB[0].managers;
+  console.log("managers", managers);
+
   useEffect(() => {
     // Aggiorna gli eventi nella prima corsia (lane1)
     const updatedData = {
@@ -68,16 +73,25 @@ const Kanban = () => {
 
   console.log(events);
   return (
-    <div>
-      matio
-      <Board
-        data={data}
-        onCardClick={onCardClicked}
-        handleDragEnd={handleDragEnd}
-      />
-      livio
-      <Board data={data} />
-    </div>
+    <Container>
+      {managers.map((manager) => {
+        return (
+          <Box sx={{ mt: "30px" }}>
+            <Typography>{manager}</Typography>
+            <Board
+              style={{ height: "500px" }}
+              data={data}
+              onCardClick={onCardClicked}
+              handleDragEnd={handleDragEnd}
+              laneStyle={{
+                maxHeight: "450px",
+                overflowY: "auto", // Opzionale: aggiunge una barra di scorrimento quando il contenuto supera l'altezza massima
+              }}
+            />
+          </Box>
+        );
+      })}
+    </Container>
   );
 };
 
