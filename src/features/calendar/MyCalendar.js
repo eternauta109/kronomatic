@@ -21,10 +21,10 @@ const localizer = dayjsLocalizer(dayjs);
  */
 export default function Basic({ ...props }) {
   const [open, setOpen] = useState(false);
-  const [event, setEvenet] = useState();
+ 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { events } = useStore();
+  const { events,event } = useStore();
 
   const { components, defaultDate, max, views } = useMemo(
     () => ({

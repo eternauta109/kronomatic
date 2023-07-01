@@ -30,7 +30,7 @@ function NavBar() {
   };
 
   const handleCloseNavMenu = (e) => {
-    console.log(e.target.value);
+    console.log("menu toggle", e.target.value);
     switch (e.target.value) {
       case "what should i do when..":
         navigate("/whatsholdido");
@@ -107,7 +107,15 @@ function NavBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Button
+                    color="success"
+                    key={page}
+                    value={page}
+                    onClick={(e) => handleCloseNavMenu(e)}
+                    sx={{ my: 2, color: "grey", display: "block", ml: 1 }}
+                  >
+                    {page}
+                  </Button>
                 </MenuItem>
               ))}
             </Menu>
