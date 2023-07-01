@@ -86,6 +86,18 @@ export const initialState = {
       laneId: "lane2",
     },
   ],
+  newEvent: {
+    id: null,
+    color: null,
+    description: "",
+    division: null,
+    startDate: new Date(),
+    endDate: new Date(),
+    note: "",
+    title: "",
+    responsible: "",
+    laneId: "lane1",
+  },
 };
 
 const eventsReducer = (state, action) => {
@@ -100,7 +112,25 @@ const eventsReducer = (state, action) => {
       return { ...state, events: payload.events };
     case "GET_EVENTS":
       console.log("GET_EVENTS", payload);
-      return { events: payload.events };
+      return { ...state, events: payload.events };
+    case "INSERT_TITLE":
+      console.log("insert title", payload);
+      return {
+        ...state,
+        newEvent: {
+          ...state.newEvent,
+          title: payload,
+        },
+      };
+      case "INSERT_DESCRIPTION":
+      console.log("INSERT_DESCRIPTION", payload);
+      return {
+        ...state,
+        newEvent: {
+          ...state.newEvent,
+          description: payload,
+        },
+      };
 
     default:
       throw new Error("no case for type", type);
