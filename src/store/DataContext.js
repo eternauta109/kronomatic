@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext } from "react";
-import eventsReducer, { initialState } from "./reoportsReducer";
+import eventsReducer, { initialState } from "./reducer";
 
 export const DataContext = createContext(initialState);
 
@@ -14,12 +14,21 @@ export const StoreContext = ({ children }) => {
     });
   };
 
-  /* 
-var items = [ {id:2}, {id:2}, {id:2}];
-var item = {...};
-var foundIndex = items.findIndex(x => x.id == item.id);
-items[foundIndex] = item;
-*/
+  const addTitleInEvent = (title) => {
+    console.log("title in sotre", title);
+    dispatch({
+      type: "INSERT_TITLE",
+      payload: title,
+    });
+  };
+
+  const addDescriptionInEvent = (descr) => {
+    console.log("addDescriptionInEvent", descr);
+    dispatch({
+      type: "INSERT_DESCRIPTION",
+      payload: descr,
+    });
+  };
 
   const upDateEvent = (event, id) => {
     console.log("store up date vent", event, id);
@@ -41,8 +50,11 @@ items[foundIndex] = item;
   const value = {
     total: state.total,
     events: state.events,
+    event: state.newEvent,
     addEvent,
     upDateEvent,
+    addTitleInEvent,
+    addDescriptionInEvent,
     getEvents,
   };
 

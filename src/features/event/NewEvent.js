@@ -1,18 +1,23 @@
 import React, { useState, useMemo, useEffect } from "react";
-import Box from "@mui/material/Box";
+
+import {
+  Box,
+  Container,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Button,
+  OutlinedInput,
+  Select,
+} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Button from "@mui/material/Button";
-import Select from "@mui/material/Select";
+
 import { useTheme } from "@mui/material/styles";
 import { cinemaDB } from "../../database/cinemaDB";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import dayjs from "dayjs";
 import useStore from "../../store/DataContext";
 
@@ -45,23 +50,29 @@ const MenuProps = {
   },
 };
 
-function NewEvent({ event, handleClose }) {
+function NewEvent({ handleClose }) {
   const [cinemaSelect, setCinemaSelect] = useState([]);
   const [manager, setManager] = useState([]);
-  const [newEvent, setNewEvent] = useState({});
-  const [upDate, setUpDate] = useState(false);
-  const [dateRange, setDateRange] = React.useState([dayjs(), dayjs()]);
-  const { events, addEvent, upDateEvent } = useStore();
-  const managers = cinemaDB[0].managers;
-  console.log(managers);
 
-  console.log(events);
-  console.log(event);
+  const [upDate, setUpDate] = useState(false);
+  const [dateRange, setDateRange] = useState([dayjs(), dayjs()]);
+  const {
+    events,
+    addEvent,
+    upDateEvent,
+    event,
+    addTitleInEvent,
+    addDescriptionInEvent,
+  } = useStore();
+  const managers = cinemaDB[0].managers;
+
+  console.log("events", events);
+  console.log("event", event);
   const theme = useTheme();
 
-  useMemo(() => {
+  /*   useMemo(() => {
     console.log(newEvent);
-  }, [newEvent]);
+  }, [newEvent]); */
 
   const handleChangeCinema = (event) => {
     const {
@@ -82,31 +93,26 @@ function NewEvent({ event, handleClose }) {
       typeof value === "string" ? value.split(",") : value
     );
   };
-  const onSubmit = (event) => {
+  const onSubmit = () => {
     console.log("quiiii");
     event.preventDefault();
     if (upDate) {
-      upDateEvent(newEvent, newEvent.id);
+      upDateEvent(event, event.id);
       handleClose();
     } else {
       const eventBis = {
-        ...newEvent,
+        ...event,
         laneId: "lane1",
         id: `nota${events.length + 1}`,
       };
-      console.log("newevent", newEvent);
+      console.log("newevent", event);
       addEvent(eventBis);
     }
   };
 
-  const handleChangeForm = (e) => {
-    setNewEvent({
-      ...newEvent,
-      [e.target.name]: e.target.value,
-    });
-  };
 
-  const handleDivisionChange = (e) => {
+
+  /* const handleDivisionChange = (e) => {
     let color;
     console.log(e.target.value);
     switch (e.target.value) {
@@ -134,19 +140,19 @@ function NewEvent({ event, handleClose }) {
       default:
         throw new Error("no case select division");
     }
-    setNewEvent({ ...newEvent, division: e.target.value, color: color });
-  };
+    setNewEvent({ ...event, division: e.target.value, color: color });
+  }; */
+
   useEffect(() => {
     if (event) {
       setUpDate(true);
-      setNewEvent({ ...event });
     }
 
     return () => {};
   }, []);
 
   return (
-    <Box
+    <Container
       sx={{
         height: "100%",
         padding: 2,
@@ -163,21 +169,21 @@ function NewEvent({ event, handleClose }) {
           fullWidth
           label="title"
           variant="outlined"
-          value={newEvent?.title ? newEvent.title : ""}
+          value={event?.title ? event.title : ""}
           name="title"
           sx={{ mb: 2 }}
-          onChange={handleChangeForm}
+          onChange={(e) => addTitleInEvent(e.target.value)}
         />
         <TextField
           fullWidth
           label="Describe event"
           variant="filled"
           multiline
-          value={newEvent?.description ? newEvent.description : ""}
+          value={event?.description ? event.description : ""}
           name="description"
           rows={4}
           sx={{ mb: 2 }}
-          onChange={handleChangeForm}
+          onChange={(e) => addDescriptionInEvent(e.target.value)}
         />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={["DateRangePicker"]}>
@@ -197,7 +203,9 @@ function NewEvent({ event, handleClose }) {
             />
           </DemoContainer>
         </LocalizationProvider>
-        {/* //division */}
+        {/*  
+       
+
         <FormControl fullWidth sx={{ mt: 2 }}>
           <InputLabel id="division">Division</InputLabel>
           <Select
@@ -224,7 +232,7 @@ function NewEvent({ event, handleClose }) {
             <MenuItem value={"brief"}>new brief</MenuItem>
           </Select>
         </FormControl>
-        {/* cinema coinvolti */}
+
         <FormControl fullWidth sx={{ mt: 2, maxWidth: 400 }}>
           <InputLabel id="cinemaInvolved">Cinema involved </InputLabel>
           <Select
@@ -290,11 +298,12 @@ function NewEvent({ event, handleClose }) {
           rows={4}
           sx={{ mt: 2, mb: 2 }}
         />
+         */}
         <Button fullWidth variant="outlined" type="submit" color="secondary">
           {upDate ? "updates" : "save"}
         </Button>
       </form>
-    </Box>
+    </Container>
   );
 }
 
