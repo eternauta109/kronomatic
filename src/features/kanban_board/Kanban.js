@@ -37,7 +37,7 @@ const Kanban = () => {
   const [data, setData] = useState(dataInit);
   const { events, upDateEvent } = useStore();
 
-  const managers = cinemaDB[0].managers;
+  const managers = cinemaDB[11].managers;
   console.log("managers", managers);
 
   useEffect(() => {

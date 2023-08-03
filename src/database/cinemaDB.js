@@ -204,6 +204,7 @@ export const cinemaDB = [
     name: "guidonia",
     screens: 10,
     seats: 2412,
+    managers: ["fabio", "roberto", "carlo", "mara", "valentina"],
     screens_det: [
       { screen: 1, seats: 134 },
       { screen: 2, seats: 134 },

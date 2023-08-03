@@ -41,6 +41,35 @@ export const StoreContext = ({ children }) => {
     });
   };
 
+  const setDate = (range) => {
+    console.log("setDate", range);
+    dispatch({
+      type: "SET_DATE",
+      payload: range,
+    });
+  };
+
+  const setDivision = (division) => {
+    dispatch({
+      type: "SET_DIVISION",
+      payload: division,
+    });
+  };
+
+  const addLink = (link) => {
+    dispatch({
+      type: "INSERT_LINK",
+      payload: link,
+    });
+  };
+
+  const addNote = (note) => {
+    dispatch({
+      type: "INSERT_NOTE",
+      payload: note,
+    });
+  };
+
   const getEvents = () => {
     dispatch({
       type: "GET_EVENTS",
@@ -56,6 +85,10 @@ export const StoreContext = ({ children }) => {
     addTitleInEvent,
     addDescriptionInEvent,
     getEvents,
+    addLink,
+    setDate,
+    addNote,
+    setDivision,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

@@ -1,6 +1,7 @@
 import React, { Fragment, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import ModalEvent from "../event/ModalEvent";
+import { format, parse, startOfWeek, endOfDay, startOfDay } from "date-fns";
 
 import useStore from "../../store/DataContext";
 import dayjs from "dayjs";
@@ -9,11 +10,24 @@ import {
   Calendar,
   Views,
   DateLocalizer,
-  dayjsLocalizer,
+  dateFnsLocalizer,
 } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-const localizer = dayjsLocalizer(dayjs);
+/* const localizer = dayjsLocalizer(dayjs); */
+// impostazione del formato data
+
+const locales = {
+  "it-IT": require("date-fns/locale/it"),
+};
+
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek: (date) => startOfDay(date),
+  getDay: (date) => dateFnsLocalizer.format(date, "EEE", { locales: "it-IT" }),
+  locales,
+});
 
 /**
  * We are defaulting the localizer here because we are using this same
@@ -21,10 +35,10 @@ const localizer = dayjsLocalizer(dayjs);
  */
 export default function Basic({ ...props }) {
   const [open, setOpen] = useState(false);
- 
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { events,event } = useStore();
+  const { events, event } = useStore();
 
   const { components, defaultDate, max, views } = useMemo(
     () => ({
@@ -48,7 +62,6 @@ export default function Basic({ ...props }) {
   return (
     <div className="calendarContainer" {...props}>
       <Calendar
-        defaultDate={dayjs()}
         localizer={localizer}
         max={max}
         events={events}

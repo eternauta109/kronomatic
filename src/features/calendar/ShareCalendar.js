@@ -17,6 +17,9 @@ const ShareCalendar = () => {
           <NewEvent />
         </Grid>
       </Grid>
+      <Grid item xs={12} md={12} sx={{ border: "1px solid black" }}>
+        qui elemnti imminenti
+      </Grid>
     </Container>
   );
 };
