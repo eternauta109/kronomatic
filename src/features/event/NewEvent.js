@@ -73,6 +73,7 @@ function NewEvent({ handleClose }) {
     initEvent,
     addLink,
     setManager,
+
     addNote,
     addTitleInEvent,
     setDivision,
