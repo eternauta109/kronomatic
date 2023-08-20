@@ -18,7 +18,6 @@ export const initialState = {
 
 const eventsReducer = (state, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case "ADD_EVENT":
       /* console.log("ADD_EVENT", payload); */

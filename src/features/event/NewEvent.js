@@ -2,7 +2,6 @@ import React, { useState, useMemo, useEffect } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
-
 import {
   Box,
   Container,

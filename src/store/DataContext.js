@@ -109,7 +109,6 @@ export const StoreContext = ({ children }) => {
     addNote,
     setDivision,
   };
-
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
 
