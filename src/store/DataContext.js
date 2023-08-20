@@ -15,7 +15,6 @@ export const StoreContext = ({ children }) => {
   };
 
   const addTitleInEvent = (title) => {
-    console.log("title in sotre", title);
     dispatch({
       type: "INSERT_TITLE",
       payload: title,
@@ -23,7 +22,6 @@ export const StoreContext = ({ children }) => {
   };
 
   const addDescriptionInEvent = (descr) => {
-    console.log("addDescriptionInEvent", descr);
     dispatch({
       type: "INSERT_DESCRIPTION",
       payload: descr,
@@ -31,7 +29,6 @@ export const StoreContext = ({ children }) => {
   };
 
   const upDateEvent = (event, id) => {
-    console.log("store up date vent", event, id);
     let updateEvents = state.events;
     let updateEvent = state.events.findIndex((e) => e.id === id);
     updateEvents[updateEvent] = event;
@@ -42,7 +39,6 @@ export const StoreContext = ({ children }) => {
   };
 
   const setDate = (range) => {
-    console.log("setDate", range);
     dispatch({
       type: "SET_DATE",
       payload: range,
@@ -53,6 +49,13 @@ export const StoreContext = ({ children }) => {
     dispatch({
       type: "SET_DIVISION",
       payload: division,
+    });
+  };
+
+  const setManager = (manager) => {
+    dispatch({
+      type: "SET_MANAGER",
+      payload: manager,
     });
   };
 
@@ -70,6 +73,19 @@ export const StoreContext = ({ children }) => {
     });
   };
 
+  const setEvent = (event) => {
+    dispatch({
+      type: "SET_EVENT",
+      payload: event,
+    });
+  };
+
+  const initEvent = () => {
+    dispatch({
+      type: "INIT_EVENT",
+    });
+  };
+
   const getEvents = () => {
     dispatch({
       type: "GET_EVENTS",
@@ -81,12 +97,15 @@ export const StoreContext = ({ children }) => {
     events: state.events,
     event: state.newEvent,
     addEvent,
+    setManager,
     upDateEvent,
     addTitleInEvent,
     addDescriptionInEvent,
     getEvents,
+    initEvent,
     addLink,
     setDate,
+    setEvent,
     addNote,
     setDivision,
   };
