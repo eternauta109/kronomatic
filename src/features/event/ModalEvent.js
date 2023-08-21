@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import NewEvent from "./NewEvent";
-
+import useStore from "../../store/DataContext";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
@@ -10,7 +10,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 600,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -18,13 +18,16 @@ const style = {
 };
 
 const ModalEvent = ({ event, open, handleClose }) => {
-  console.log(event, open, handleClose);
+  const { initEvent } = useStore();
   return (
     <>
       {event && (
         <Modal
           open={open}
-          onClose={handleClose}
+          onClose={() => {
+            handleClose();
+            initEvent(); // Suppongo che tu abbia la funzione initEvent()
+          }}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >

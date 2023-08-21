@@ -2,7 +2,6 @@ import React, { useState, useMemo, useEffect } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
-
 import {
   Box,
   Container,
@@ -20,7 +19,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 
 import { useTheme } from "@mui/material/styles";
 import { cinemaDB } from "../../database/cinemaDB";
-import dayjs from "dayjs";
+
 import useStore from "../../store/DataContext";
 
 function getStyles(name, personName, theme) {
@@ -53,8 +52,8 @@ const MenuProps = {
 };
 
 function NewEvent({ handleClose }) {
-  const [cinemaSelect, setCinemaSelect] = useState([]);
-  const [manager, setManager] = useState([]);
+  /*  const [cinemaSelect, setCinemaSelect] = useState([]); */
+
   const [dateState, setDateState] = useState([
     {
       startDate: new Date(),
@@ -70,7 +69,10 @@ function NewEvent({ handleClose }) {
     upDateEvent,
     setDate,
     event,
+    initEvent,
     addLink,
+    setManager,
+
     addNote,
     addTitleInEvent,
     setDivision,
@@ -86,7 +88,7 @@ function NewEvent({ handleClose }) {
     console.log(newEvent);
   }, [newEvent]); */
 
-  const handleChangeCinema = (event) => {
+  /* const handleChangeCinema = (event) => {
     const {
       target: { value },
     } = event;
@@ -95,18 +97,8 @@ function NewEvent({ handleClose }) {
       typeof value === "string" ? value.split(",") : value
     );
   };
-
-  const handleChangeManager = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setManager(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
+ */
   const onSubmit = (e) => {
-    console.log("quiiii");
     e.preventDefault();
     if (upDate) {
       upDateEvent(event, event.id);
@@ -114,12 +106,14 @@ function NewEvent({ handleClose }) {
     } else {
       const eventBis = {
         ...event,
-        laneId: "lane1",
+        laneId: `lane-${event.manager ? event.manager : managers[0]}`,
+        manager: event.manager ? event.manager : managers[0],
         id: `nota${events.length + 1}`,
       };
       console.log("newevent", event);
       addEvent(eventBis);
     }
+    initEvent();
   };
 
   const handleDivisionChange = (e) => {
@@ -154,12 +148,15 @@ function NewEvent({ handleClose }) {
   };
 
   useEffect(() => {
+    console.log("UPDATE", upDate);
     if (event.id !== null) {
       console.log("evento.id nullo");
       setUpDate(true);
     }
 
-    return () => {};
+    return () => {
+      initEvent();
+    };
   }, []);
 
   return (
@@ -169,11 +166,19 @@ function NewEvent({ handleClose }) {
         padding: 2,
         border: "1px solid green",
         mb: 2,
+        overflowY: "auto",
       }}
     >
       {upDate && (
-        <Button variant="contained" sx={{ m: 2 }}>
-          Done
+        <Button
+          variant="contained"
+          sx={{ m: 2 }}
+          onClick={(e) => {
+            handleClose();
+            initEvent();
+          }}
+        >
+          exit without save
         </Button>
       )}
       <form onSubmit={onSubmit}>
@@ -225,12 +230,8 @@ function NewEvent({ handleClose }) {
             }}
             fullWidth
           >
-            <MenuItem value={"marketing"} data-color={"E59866"}>
-              marketing
-            </MenuItem>
-            <MenuItem value={"operations"} data-color={"7DCEA0"}>
-              operations
-            </MenuItem>
+            <MenuItem value={"marketing"}>marketing</MenuItem>
+            <MenuItem value={"operations"}>operations</MenuItem>
             <MenuItem value={"pricing"}>pricing</MenuItem>
             <MenuItem value={"facilities"}>facilities</MenuItem>
             <MenuItem value={"screencontent"}>screen conten</MenuItem>
@@ -262,6 +263,23 @@ function NewEvent({ handleClose }) {
           sx={{ mt: 2, mb: 2 }}
         />
 
+        <FormControl fullWidth sx={{ my: 2, maxWidth: 400 }}>
+          <InputLabel id="owner">person in charge</InputLabel>
+          <Select
+            labelId="owner"
+            value={event?.manager ? event.manager : managers[0]}
+            onChange={(e) => setManager(e.target.value)}
+            MenuProps={MenuProps}
+            input={<OutlinedInput label="person in charge" />}
+          >
+            {managers.map((el, key) => (
+              <MenuItem key={key} value={el}>
+                {el}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
         {/*  
        
 
@@ -285,27 +303,6 @@ function NewEvent({ handleClose }) {
                 style={getStyles(el.name, cinemaSelect, theme)}
               >
                 {el.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl fullWidth sx={{ mt: 2, maxWidth: 400 }}>
-          <InputLabel id="owner">person in charge</InputLabel>
-          <Select
-            multiple
-            labelId="owner"
-            value={manager}
-            onChange={handleChangeManager}
-            MenuProps={MenuProps}
-            input={<OutlinedInput label="person in charge" />}
-          >
-            {managers.map((el, key) => (
-              <MenuItem
-                key={key}
-                value={el}
-                style={getStylesManager(el, manager, theme)}
-              >
-                {el}
               </MenuItem>
             ))}
           </Select>

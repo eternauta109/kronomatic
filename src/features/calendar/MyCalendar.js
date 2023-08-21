@@ -1,10 +1,11 @@
-import React, { Fragment, useMemo, useState } from "react";
-import PropTypes from "prop-types";
-import ModalEvent from "../event/ModalEvent";
-import { format, parse, startOfWeek, endOfDay, startOfDay } from "date-fns";
+import React, { useMemo, useState } from "react";
 
+import format from "date-fns/format";
+import parse from "date-fns/parse";
+import startOfWeek from "date-fns/startOfWeek";
+import getDay from "date-fns/getDay";
+import enUS from "date-fns/locale/en-US";
 import useStore from "../../store/DataContext";
-import dayjs from "dayjs";
 
 import {
   Calendar,
@@ -18,14 +19,14 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 // impostazione del formato data
 
 const locales = {
-  "it-IT": require("date-fns/locale/it"),
+  "en-US": enUS,
 };
 
 const localizer = dateFnsLocalizer({
   format,
   parse,
-  startOfWeek: (date) => startOfDay(date),
-  getDay: (date) => dateFnsLocalizer.format(date, "EEE", { locales: "it-IT" }),
+  startOfWeek,
+  getDay,
   locales,
 });
 
@@ -33,12 +34,10 @@ const localizer = dateFnsLocalizer({
  * We are defaulting the localizer here because we are using this same
  * example on the main 'About' page in Storybook
  */
-export default function Basic({ ...props }) {
-  const [open, setOpen] = useState(false);
+export default function Basic({ handleOpen }) {
+  const { events, setEvent } = useStore();
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const { events, event } = useStore();
+  console.log("events in calendar", events);
 
   const { components, defaultDate, max, views } = useMemo(
     () => ({
@@ -55,12 +54,12 @@ export default function Basic({ ...props }) {
     console.log(date);
   };
   const onSelectEvent = (event) => {
-    setEvenet(event);
+    setEvent(event);
     handleOpen();
   };
 
   return (
-    <div className="calendarContainer" {...props}>
+    <div className="calendarContainer">
       <Calendar
         localizer={localizer}
         max={max}
@@ -72,17 +71,12 @@ export default function Basic({ ...props }) {
         step={60}
         views={views}
         onSelectEvent={(event) => onSelectEvent(event)}
-        onSelectSlot={handleSelect}
+        /* onSelectSlot={handleSelect} */
         eventPropGetter={(event) => {
           const backgroundColor = event.color;
           return { style: { backgroundColor } };
         }}
       />
-      <ModalEvent event={event} open={open} handleClose={handleClose} />
     </div>
   );
 }
-Basic.propTypes = {
-  localizer: PropTypes.instanceOf(DateLocalizer),
-  showDemoLink: PropTypes.bool,
-};

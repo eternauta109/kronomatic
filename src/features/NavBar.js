@@ -36,7 +36,6 @@ function NavBar() {
         navigate("/whatsholdido");
         break;
       case "KanBanBoard":
-        console.log("oooo");
         navigate("/kanban");
         break;
       case "ShareCalendar":
