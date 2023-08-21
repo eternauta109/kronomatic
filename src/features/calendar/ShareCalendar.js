@@ -7,12 +7,12 @@ import NewEvent from "../event/NewEvent";
 import MyCalendar from "./MyCalendar";
 
 const roundButtonStyle = {
-  borderRadius: "40%",
+  borderRadius: "10%",
   width: "100px",
   height: "60px",
   margin: "20px",
   minWidth: "unset",
-  backgroundColor: "green", // Aggiungi il colore rosso al background
+  backgroundColor: "#689F38", // Aggiungi il colore rosso al background
 };
 
 const ShareCalendar = () => {
@@ -45,10 +45,16 @@ const ShareCalendar = () => {
         sx={{ mt: 4 }}
       >
         <Grid item xs={12} md={6} sx={{ border: "1px solid black", p: 2 }}>
-          qui elemnti imminenti
+          manutenzione varia
         </Grid>
         <Grid item xs={12} md={6} sx={{ border: "1px solid black", p: 2 }}>
-          qui elemnti imminenti
+          promo e iniziative
+        </Grid>
+        <Grid item xs={12} md={6} sx={{ border: "1px solid black", p: 2 }}>
+         scarichi
+        </Grid>
+        <Grid item xs={12} md={6} sx={{ border: "1px solid black", p: 2 }}>
+          promo e iniziative
         </Grid>
       </Grid>
       <ModalEvent event={event} open={open} handleClose={handleClose} />

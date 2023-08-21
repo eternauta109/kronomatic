@@ -106,7 +106,8 @@ function NewEvent({ handleClose }) {
     } else {
       const eventBis = {
         ...event,
-        laneId: "lane1",
+        laneId: `lane-${event.manager ? event.manager : managers[0]}`,
+        manager: event.manager ? event.manager : managers[0],
         id: `nota${events.length + 1}`,
       };
       console.log("newevent", event);
@@ -153,7 +154,9 @@ function NewEvent({ handleClose }) {
       setUpDate(true);
     }
 
-    return () => {};
+    return () => {
+      initEvent();
+    };
   }, []);
 
   return (
@@ -163,6 +166,7 @@ function NewEvent({ handleClose }) {
         padding: 2,
         border: "1px solid green",
         mb: 2,
+        overflowY: "auto",
       }}
     >
       {upDate && (

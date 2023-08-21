@@ -1,96 +1,132 @@
-import Board from "react-trello";
+import React, { useEffect, useState } from "react";
 import { Container, Typography, Box } from "@mui/material";
-import { useEffect, useState } from "react";
+import Board from "react-trello";
 import useStore from "../.././store/DataContext";
 import { cinemaDB } from "../.././database/cinemaDB";
+import CustomCard from "./CustomCard";
 
 const dataInit = {
   lanes: [
-    {
-      id: "lane1",
-      title: "to do task",
-      label: "",
-      cards: [],
-    },
-    {
-      id: "lane2",
-      title: "in progress",
-      label: "",
-      cards: [],
-    },
-    {
-      id: "lane3",
-      title: "Completed",
-      label: "",
-      cards: [],
-    },
-    {
-      id: "lane4",
-      title: "Blocked",
-      label: "",
-      cards: [],
-    },
+    // Lascia le tue lane iniziali vuote o come preferisci
   ],
 };
 
 const Kanban = () => {
-  const [data, setData] = useState(dataInit);
   const { events, upDateEvent } = useStore();
-
   const managers = cinemaDB[11].managers;
-  console.log("managers", managers);
+
+  const [managerData, setManagerData] = useState([]);
 
   useEffect(() => {
-    // Aggiorna gli eventi nella prima corsia (lane1)
-    const updatedData = {
-      lanes: data.lanes.map((lane) => ({
-        ...lane,
-        cards: events.filter((event) => event.laneId === lane.id),
-      })),
-    };
+    const updatedManagerData = managers.map((manager) => ({
+      manager: manager,
+      data: {
+        lanes: [
+          {
+            id: `lane-${manager}`,
+            title: "to do task",
+            label: "",
+            style: {
+              width: 270,
+              backgroundColor: "#B39DDB",
+              color: "#fff",
+              boxShadow: "2px 2px 4px 0px rgba(0,0,0,0.75)",
+            },
+            cards: events.filter(
+              (event) =>
+                event.manager === manager && event.laneId === `lane-${manager}`
+            ),
+          },
+          {
+            id: `lane-${manager}-in-progress`,
+            title: "in progress",
+            label: "",
+            style: {
+              width: 270,
+              backgroundColor: "#F9A825",
+              color: "#fff",
+              boxShadow: "2px 2px 4px 0px rgba(0,0,0,0.75)",
+            },
+            cards: events.filter(
+              (event) =>
+                event.manager === manager &&
+                event.laneId === `lane-${manager}-in-progress`
+            ),
+          },
+          {
+            id: `lane-${manager}-completed`,
+            title: "Completed",
+            label: "",
+            style: {
+              width: 270,
+              backgroundColor: "#689F38",
+              color: "#fff",
+              boxShadow: "2px 2px 4px 0px rgba(0,0,0,0.75)",
+            },
+            cards: events.filter(
+              (event) =>
+                event.manager === manager &&
+                event.laneId === `lane-${manager}-completed`
+            ),
+          },
+          {
+            id: `lane-${manager}-blocked`,
+            title: "Blocked",
+            label: "",
+            style: {
+              width: 270,
+              backgroundColor: "#9E9E9E",
+              color: "#fff",
+              boxShadow: "2px 2px 4px 0px rgba(0,0,0,0.75)",
+            },
+            cards: events.filter(
+              (event) =>
+                event.manager === manager &&
+                event.laneId === `lane-${manager}-blocked`
+            ),
+          },
+        ],
+      },
+    }));
 
-    setData(updatedData);
+    setManagerData(updatedManagerData);
+  }, [events, managers]);
 
-    // Aggiorna il valore di data
-    setData(updatedData);
-  }, [events]);
-
-  const onCardClicked = (e, d) => {
-    console.log(e, d);
-    const finder = events.find((event) => event.id === e);
-    console.log("finder", finder);
-  };
-
-  const handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
-    console.log("drag ended");
-    console.log(`cardId: ${cardId}`);
-    console.log(`sourceLaneId: ${sourceLaneId}`);
-    console.log(`targetLaneId: ${targetLaneId}`);
-    const finder = events.find((event) => event.id === cardId);
-    const newEvent = { ...finder, laneId: targetLaneId };
-    upDateEvent(newEvent, cardId);
-  };
-
-  console.log(events);
   return (
     <Container>
-      {managers.map((manager) => {
-        return (
-          <Box sx={{ mt: "30px" }}>
+      {managerData.map(({ manager, data }) => (
+        <Box key={manager} sx={{ mt: "30px" }}>
+          <Box component="div" sx={{ p: 2, border: "2px dashed grey" }}>
             <Typography>{manager}</Typography>
-            <Board
-              style={{ height: "500px" }}
-              data={data}
-              onCardClick={onCardClicked}
-              handleDragEnd={handleDragEnd}
-              laneStyle={{
-                maxHeight: "450px",
-                overflowY: "auto", // Opzionale: aggiunge una barra di scorrimento quando il contenuto supera l'altezza massima
-              }}
-            />
           </Box>
-        );
-      })}
+          <Board
+            style={{ height: "500px", marginTop: "20px" }}
+            data={data} // Passa direttamente l'oggetto data
+            handleDragEnd={(cardId, sourceLaneId, targetLaneId) => {
+              const sourceManager = sourceLaneId.split("-")[1];
+              const targetManager = targetLaneId.split("-")[1];
+
+              const finder = events.find((event) => event.id === cardId);
+
+              if (sourceManager !== targetManager) {
+                const newEvent = {
+                  ...finder,
+                  laneId: targetLaneId,
+                  manager: targetManager,
+                };
+                upDateEvent(newEvent, cardId);
+              } else {
+                const newEvent = { ...finder, laneId: targetLaneId };
+                upDateEvent(newEvent, cardId);
+              }
+            }}
+            laneStyle={{
+              maxHeight: "450px",
+              overflowY: "auto",
+            }}
+          />
+        </Box>
+      ))}
     </Container>
   );
 };
