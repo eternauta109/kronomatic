@@ -4,6 +4,7 @@ import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
 import {
   Box,
+  Typography,
   Container,
   InputLabel,
   MenuItem,
@@ -11,16 +12,16 @@ import {
   Button,
   OutlinedInput,
   Select,
+  TextField,
 } from "@mui/material";
-import TextField from "@mui/material/TextField";
+
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 
-import { useTheme } from "@mui/material/styles";
 import { cinemaDB } from "../../database/cinemaDB";
 
-import useStore from "../../store/DataContext";
+import useEventsStore from "../../store/EventDataContext";
 
 function getStyles(name, personName, theme) {
   return {
@@ -77,12 +78,11 @@ function NewEvent({ handleClose }) {
     addTitleInEvent,
     setDivision,
     addDescriptionInEvent,
-  } = useStore();
+  } = useEventsStore();
   const managers = cinemaDB[11].managers;
 
   console.log("events", events);
   console.log("event", event);
-  const theme = useTheme();
 
   /*   useMemo(() => {
     console.log(newEvent);
@@ -162,13 +162,18 @@ function NewEvent({ handleClose }) {
   return (
     <Container
       sx={{
-        height: "100%",
+        height: "700px",
         padding: 2,
-        border: "1px solid green",
+
         mb: 2,
         overflowY: "auto",
       }}
     >
+      {!upDate && (
+        <Typography variant="h4" sx={{ mb: 1 }}>
+          New Event
+        </Typography>
+      )}
       {upDate && (
         <Button
           variant="contained"
@@ -263,9 +268,10 @@ function NewEvent({ handleClose }) {
           sx={{ mt: 2, mb: 2 }}
         />
 
-        <FormControl fullWidth sx={{ my: 2, maxWidth: 400 }}>
+        <FormControl fullWidth sx={{ my: 2 }}>
           <InputLabel id="owner">person in charge</InputLabel>
           <Select
+            fullWidth
             labelId="owner"
             value={event?.manager ? event.manager : managers[0]}
             onChange={(e) => setManager(e.target.value)}

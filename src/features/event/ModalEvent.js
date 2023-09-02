@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import NewEvent from "./NewEvent";
-import useStore from "../../store/DataContext";
+import useEventsStore from "../../store/EventDataContext";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
@@ -17,8 +17,8 @@ const style = {
   p: 4,
 };
 
-const ModalEvent = ({ event, open, handleClose }) => {
-  const { initEvent } = useStore();
+const ModalEvent = ({ open, handleClose }) => {
+  const { event,initEvent } = useEventsStore();
   return (
     <>
       {event && (
