@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import NewPromo from "./NewPromo";
-import usePromoStore from "../../store/PromoDataContext";
+
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import usePromoStore from "../.././store/PromoDataContext";
 
 const style = {
   position: "absolute",
@@ -17,8 +18,8 @@ const style = {
   p: 4,
 };
 
-const PromoModal = ({ promo, open, handleClose }) => {
-  const { initPromo } = usePromoStore();
+const PromoModal = ({ open, handleClose }) => {
+  const { initPromo, promo } = usePromoStore();
   return (
     <>
       {promo && (
@@ -26,7 +27,7 @@ const PromoModal = ({ promo, open, handleClose }) => {
           open={open}
           onClose={() => {
             handleClose();
-            initPromo(); // Suppongo che tu abbia la funzione initEvent()
+            /*  initPromo(); */ // Suppongo che tu abbia la funzione initEvent()
           }}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
@@ -40,4 +41,4 @@ const PromoModal = ({ promo, open, handleClose }) => {
   );
 };
 
-export default ModalEvent;
+export default PromoModal;

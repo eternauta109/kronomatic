@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Button } from "@mui/material";
 import ModalEvent from "../event/ModalEvent";
+
 import Cinemas from "../CinemaList";
-import { Container, Grid, Typography, Box } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 import MyCalendar from "./MyCalendar";
 import Promo from "../dashcomp/Promo";
@@ -18,7 +19,6 @@ const roundButtonStyle = {
 
 const ShareCalendar = () => {
   const [openNewEvent, setOpenNewEvent] = useState(false);
-  const [openNewPromo, setOpenNewPeomo] = useState(false);
 
   const handleOpenNewEvent = () => setOpenNewEvent(true);
   const handleCloseNewEvent = () => setOpenNewEvent(false);
@@ -47,21 +47,13 @@ const ShareCalendar = () => {
         sx={{ mt: 4 }}
       >
         <Grid container item xs={12} md={9} sx={{ p: 2 }}>
-          <Grid item xs={6}>
-            <Typography variant="h4">Promo e iniziative</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Box sx={{ textAlign: "right", mb: 1 }}>
-              <Button variant="contained">Add a promo</Button>
-            </Box>
-          </Grid>
           <Promo />
         </Grid>
         <Grid item xs={12} md={3} sx={{ border: "1px solid black", p: 2 }}>
           Scarichi vari
         </Grid>
         <Grid item xs={12} md={6} sx={{ border: "1px solid black", p: 2 }}>
-          scarichi
+          interventi di manutenzione
         </Grid>
         <Grid item xs={12} md={6} sx={{ border: "1px solid black", p: 2 }}>
           promo e iniziative
