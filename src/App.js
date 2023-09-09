@@ -6,7 +6,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBar from "./features/NavBar";
 import WhatShouldIdo from "./features/whatshould/WhatShoIdido";
 
-import { StoreContext } from "./store/DataContext";
+import { EventStoreContext } from "./store/EventDataContext";
+import { PromoStoreContext } from "./store/PromoDataContext";
 import Kanban from "./features/kanban_board/Kanban";
 
 export default function App() {
@@ -17,16 +18,18 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <StoreContext>
-        <div className="App">
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<ShareCalendar />} />
-            <Route path="/whatsholdido" element={<WhatShouldIdo />} />
-            <Route path="/kanban" element={<Kanban />} />
-          </Routes>
-        </div>
-      </StoreContext>
+      <EventStoreContext>
+        <PromoStoreContext>
+          <div className="App">
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<ShareCalendar />} />
+              <Route path="/whatsholdido" element={<WhatShouldIdo />} />
+              <Route path="/kanban" element={<Kanban />} />
+            </Routes>
+          </div>
+        </PromoStoreContext>
+      </EventStoreContext>
     </ThemeProvider>
   );
 }

@@ -1,5 +1,5 @@
-export const initialState = {
-  total: 0,
+export const initialEvents = {
+  totalEvents: 0,
   events: [],
   newEvent: {
     id: null,
@@ -21,7 +21,11 @@ const eventsReducer = (state, action) => {
   switch (type) {
     case "ADD_EVENT":
       /* console.log("ADD_EVENT", payload); */
-      return { ...state, events: payload.events };
+      return {
+        ...state,
+        events: payload.events,
+        totalEvent: state.totalEvent + 1,
+      };
     case "UPDATE_EVENT":
       /* console.log("UPDATE_EVENT", payload); */
       return { ...state, events: payload.events };
@@ -111,7 +115,7 @@ const eventsReducer = (state, action) => {
       return {
         ...state,
         newEvent: {
-          ...initialState.newEvent,
+          ...initialEvents.newEvent,
         },
       };
 

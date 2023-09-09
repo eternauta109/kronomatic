@@ -1,101 +1,101 @@
 import { createContext, useReducer, useContext } from "react";
-import eventsReducer, { initialState } from "./reducer";
+import eventsReducer, { initialEvents } from "./eventsReducer";
 
-export const DataContext = createContext(initialState);
+export const EventDataContext = createContext(initialEvents);
 
-export const StoreContext = ({ children }) => {
-  const [state, dispatch] = useReducer(eventsReducer, initialState);
+export const EventStoreContext = ({ children }) => {
+  const [eventState, deispatchEvent] = useReducer(eventsReducer, initialEvents);
 
   const addEvent = (event) => {
-    const updateEvents = state.events.concat(event);
-    dispatch({
+    const updateEvents = eventState.events.concat(event);
+    deispatchEvent({
       type: "ADD_EVENT",
       payload: { events: updateEvents },
     });
   };
 
   const addTitleInEvent = (title) => {
-    dispatch({
+    deispatchEvent({
       type: "INSERT_TITLE",
       payload: title,
     });
   };
 
   const addDescriptionInEvent = (descr) => {
-    dispatch({
+    deispatchEvent({
       type: "INSERT_DESCRIPTION",
       payload: descr,
     });
   };
 
   const upDateEvent = (event, id) => {
-    let updateEvents = state.events;
-    let updateEvent = state.events.findIndex((e) => e.id === id);
+    let updateEvents = eventState.events;
+    let updateEvent = eventState.events.findIndex((e) => e.id === id);
     updateEvents[updateEvent] = event;
-    dispatch({
+    deispatchEvent({
       type: "UPDATE_EVENT",
       payload: { events: updateEvents },
     });
   };
 
   const setDate = (range) => {
-    dispatch({
+    deispatchEvent({
       type: "SET_DATE",
       payload: range,
     });
   };
 
   const setDivision = (division) => {
-    dispatch({
+    deispatchEvent({
       type: "SET_DIVISION",
       payload: division,
     });
   };
 
   const setManager = (manager) => {
-    dispatch({
+    deispatchEvent({
       type: "SET_MANAGER",
       payload: manager,
     });
   };
 
   const addLink = (link) => {
-    dispatch({
+    deispatchEvent({
       type: "INSERT_LINK",
       payload: link,
     });
   };
 
   const addNote = (note) => {
-    dispatch({
+    deispatchEvent({
       type: "INSERT_NOTE",
       payload: note,
     });
   };
 
   const setEvent = (event) => {
-    dispatch({
+    deispatchEvent({
       type: "SET_EVENT",
       payload: event,
     });
   };
 
   const initEvent = () => {
-    dispatch({
+    deispatchEvent({
       type: "INIT_EVENT",
     });
   };
 
   const getEvents = () => {
-    dispatch({
+    deispatchEvent({
       type: "GET_EVENTS",
     });
   };
 
   const value = {
-    total: state.total,
-    events: state.events,
-    event: state.newEvent,
+    totalEvent: eventState.totalEvent,
+    events: eventState.events,
+    event: eventState.newEvent,
     addEvent,
     setManager,
     upDateEvent,
@@ -109,15 +109,19 @@ export const StoreContext = ({ children }) => {
     addNote,
     setDivision,
   };
-  return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
+  return (
+    <EventDataContext.Provider value={value}>
+      {children}
+    </EventDataContext.Provider>
+  );
 };
 
-const useStore = () => {
-  const context = useContext(DataContext);
+const useEventsStore = () => {
+  const context = useContext(EventDataContext);
   if (context === undefined) {
     throw new Error("useData must be used with DataContext");
   }
   return context;
 };
 
-export default useStore;
+export default useEventsStore;

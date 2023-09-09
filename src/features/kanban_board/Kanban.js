@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Typography, Box } from "@mui/material";
 import Board from "react-trello";
-import useStore from "../.././store/DataContext";
+import useEventsStore from "../.././store/EventDataContext";
 import { cinemaDB } from "../.././database/cinemaDB";
 import CustomCard from "./CustomCard";
 
@@ -12,7 +12,7 @@ const dataInit = {
 };
 
 const Kanban = () => {
-  const { events, upDateEvent } = useStore();
+  const { events, upDateEvent } = useEventsStore();
   const managers = cinemaDB[11].managers;
 
   const [managerData, setManagerData] = useState([]);

@@ -5,7 +5,7 @@ import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 import enUS from "date-fns/locale/en-US";
-import useStore from "../../store/DataContext";
+import useEventsStore from "../../store/EventDataContext";
 
 import {
   Calendar,
@@ -35,7 +35,7 @@ const localizer = dateFnsLocalizer({
  * example on the main 'About' page in Storybook
  */
 export default function Basic({ handleOpen }) {
-  const { events, setEvent } = useStore();
+  const { events, setEvent } = useEventsStore();
 
   console.log("events in calendar", events);
 
