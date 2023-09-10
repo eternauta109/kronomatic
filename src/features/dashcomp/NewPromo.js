@@ -3,6 +3,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import {
   Box,
   Container,
+  Typography,
   InputLabel,
   MenuItem,
   FormControl,
@@ -11,60 +12,109 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import usePromoStore from "../../store/PromoDataContext";
 import { useTheme } from "@mui/material/styles";
 import { cinemaDB } from "../../database/cinemaDB";
 
-function NewPromo({ handleClosePromo }) {
+function NewPromo({ handleClose, upDate }) {
   /*  const [cinemaSelect, setCinemaSelect] = useState([]); */
 
-  const [upDate, setUpDate] = useState(false);
+  
+  const {addPromo, setDate, promo, totalPromo, setFilm, setGadget, setModalita, setWhere, initPromo,updatePromo} =usePromoStore()
 
   const theme = useTheme();
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log("UPDATE", upDate)
     if (upDate) {
+       //qui update promo
+       updatePromo(promo.id, promo)
     } else {
       const promoBis = {
         ...promo,
+        id:totalPromo
       };
-      console.log("newevent", event);
-      addEvent(eventBis);
+      addPromo(promoBis);     
     }
-    initEvent();
+    initPromo();
+    handleClose(false)
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {console.log(promo)}, []);
 
   return (
     <Container
       sx={{
-        height: "700px",
+        height: "500px",
         padding: 2,
 
         mb: 2,
         overflowY: "auto",
       }}
     >
+      <Typography variant="h4" sx={{mb:2}}>
+        Insert new promo/initiative
+      </Typography>
       {upDate && (
         <Button
           variant="contained"
           sx={{ m: 2 }}
           onClick={(e) => {
             handleClose();
-            initEvent();
+           
           }}
         >
           exit without save
         </Button>
       )}
+
+  <Box sx={{mb:2}}>
+    <LocalizationProvider  dateAdapter={AdapterDateFns}>
+        <DatePicker value={promo.date} onChange={(e)=>setDate(e)}/>
+    </LocalizationProvider>
+  </Box>
+
+  
+
       <form onSubmit={onSubmit}>
         <TextField
           fullWidth
-          label="title"
+          label="film"
           variant="outlined"
-          name="title"
+          value={promo.film? promo.film : ""}
+          onChange={(e)=>{setFilm(e.target.value)}}
+          name="film"
+          sx={{ mb: 2 }}
+        />
+        <TextField
+          fullWidth
+          label="gadget"
+          variant="outlined"
+          value={promo.gadget? promo.gadget : ""}
+          onChange={(e)=>{setGadget(e.target.value)}}
+          name="gadget"
+          sx={{ mb: 2 }}
+        />
+        <TextField
+          fullWidth
+          label="modalita"
+          variant="outlined"
+          value={promo.modalita? promo.modalita : ""}
+          onChange={(e)=>{setModalita(e.target.value)}}
+          name="modalita"
+          sx={{ mb: 2 }}
+        />
+        <TextField
+          fullWidth
+          label="where"
+          variant="outlined"
+          value={promo.where? promo.where : ""}
+          onChange={(e)=>{setWhere(e.target.value)}}
+          name="where"
           sx={{ mb: 2 }}
         />
 
