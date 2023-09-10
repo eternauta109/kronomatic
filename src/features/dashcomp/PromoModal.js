@@ -1,9 +1,6 @@
 import { useState } from "react";
-import Box from "@mui/material/Box";
 import NewPromo from "./NewPromo";
-
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import {Typography, Modal, Box} from "@mui/material";
 import usePromoStore from "../.././store/PromoDataContext";
 
 const style = {
@@ -18,7 +15,7 @@ const style = {
   p: 4,
 };
 
-const PromoModal = ({ open, handleClose }) => {
+const PromoModal = ({ open, handleClose, upDate }) => {
   const { initPromo, promo } = usePromoStore();
   return (
     <>
@@ -33,7 +30,7 @@ const PromoModal = ({ open, handleClose }) => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <NewPromo promo={promo} handleClose={handleClose} />
+            <NewPromo promo={promo} handleClose={handleClose} upDate={upDate} />
           </Box>
         </Modal>
       )}
