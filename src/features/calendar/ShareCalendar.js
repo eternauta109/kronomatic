@@ -49,15 +49,6 @@ const ShareCalendar = () => {
         <Grid container item xs={12} md={9} sx={{ p: 2 }}>
           <Promo />
         </Grid>
-        <Grid item xs={12} md={3} sx={{ border: "1px solid black", p: 2 }}>
-          Scarichi vari
-        </Grid>
-        <Grid item xs={12} md={6} sx={{ border: "1px solid black", p: 2 }}>
-          interventi di manutenzione
-        </Grid>
-        <Grid item xs={12} md={6} sx={{ border: "1px solid black", p: 2 }}>
-          promo e iniziative
-        </Grid>
       </Grid>
       <ModalEvent open={openNewEvent} handleClose={handleCloseNewEvent} />
     </Container>

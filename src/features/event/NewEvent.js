@@ -11,6 +11,8 @@ import {
   FormControl,
   Button,
   OutlinedInput,
+  ToggleButton,
+  ToggleButtonGroup,
   Select,
   TextField,
 } from "@mui/material";
@@ -63,6 +65,7 @@ function NewEvent({ handleClose }) {
     },
   ]);
   const [upDate, setUpDate] = useState(false);
+  const [alignment, setAlignment] = React.useState("left");
 
   const {
     events,
@@ -147,6 +150,10 @@ function NewEvent({ handleClose }) {
     setDivision({ division: e.target.value, color: color });
   };
 
+  const handleToggleAlignment = (event, newAlignment) => {
+    setAlignment(newAlignment);
+  };
+
   useEffect(() => {
     console.log("UPDATE", upDate);
     if (event.id !== null) {
@@ -187,6 +194,27 @@ function NewEvent({ handleClose }) {
         </Button>
       )}
       <form onSubmit={onSubmit}>
+        <ToggleButtonGroup
+          value={alignment}
+          exclusive
+          sx={{ mb: 2 }}
+          onChange={handleToggleAlignment}
+          aria-label="text alignment"
+        >
+          <ToggleButton value="left" aria-label="left aligned">
+            1
+          </ToggleButton>
+          <ToggleButton value="center" aria-label="centered">
+            2
+          </ToggleButton>
+          <ToggleButton value="right" aria-label="right aligned">
+            3
+          </ToggleButton>
+          <ToggleButton value="justify" aria-label="justified">
+            4
+          </ToggleButton>
+        </ToggleButtonGroup>
+
         <TextField
           fullWidth
           label="title"
