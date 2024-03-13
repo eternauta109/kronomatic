@@ -2,6 +2,8 @@ import React, { useState, useMemo, useEffect } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
+import { useDispatch } from "react-redux";
+import { addEvents, removeEvents, updateEvents } from "../../store/eventsSlice";
 import {
   Box,
   Typography,
@@ -16,6 +18,20 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+
+const initialEvent = {
+  id: null,
+  color: null,
+  description: "",
+  division: null,
+  start: "2024-03-11T09:21:17.084Z",
+  end: "2024-03-11T09:21:17.084Z",
+  link: null,
+  note: "",
+  title: "",
+  manager: "",
+  laneId: "lane1",
+};
 
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
@@ -66,6 +82,7 @@ function NewEvent({ handleClose }) {
   ]);
   const [upDate, setUpDate] = useState(false);
   const [alignment, setAlignment] = React.useState("left");
+  const dispatch = useDispatch();
 
   const {
     events,
@@ -82,7 +99,8 @@ function NewEvent({ handleClose }) {
     setDivision,
     addDescriptionInEvent,
   } = useEventsStore();
-  const managers = cinemaDB[11].managers;
+  const managers = cinemaDB[11].managers[0].name;
+  console.log(managers);
 
   console.log("events", events);
   console.log("event", event);
@@ -101,7 +119,7 @@ function NewEvent({ handleClose }) {
     );
   };
  */
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (upDate) {
       upDateEvent(event, event.id);
@@ -109,11 +127,12 @@ function NewEvent({ handleClose }) {
     } else {
       const eventBis = {
         ...event,
-        laneId: `lane-${event.manager ? event.manager : managers[0]}`,
-        manager: event.manager ? event.manager : managers[0],
+        laneId: `lane-${event.manager ? event.manager : managers}`,
+        manager: event.manager ? event.manager : managers,
         id: `nota${events.length + 1}`,
       };
       console.log("newevent", event);
+      await dispatch(addEvents(eventBis));
       addEvent(eventBis);
     }
     initEvent();
@@ -306,9 +325,9 @@ function NewEvent({ handleClose }) {
             MenuProps={MenuProps}
             input={<OutlinedInput label="person in charge" />}
           >
-            {managers.map((el, key) => (
-              <MenuItem key={key} value={el}>
-                {el}
+            {cinemaDB[11].managers.map((el, key) => (
+              <MenuItem key={key} value={el.name}>
+                {el.name}
               </MenuItem>
             ))}
           </Select>

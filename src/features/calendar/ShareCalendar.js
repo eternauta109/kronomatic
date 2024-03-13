@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import ModalEvent from "../event/ModalEvent";
 
-import Cinemas from "../CinemaList";
 import { Container, Grid } from "@mui/material";
 
 import MyCalendar from "./MyCalendar";

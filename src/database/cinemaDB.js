@@ -204,7 +204,17 @@ export const cinemaDB = [
     name: "guidonia",
     screens: 10,
     seats: 2412,
-    managers: ["fabio", "roberto", "carlo", "mara", "valentina"],
+    managers: [
+      {
+        name: "fabioc",
+        rule: "tm",
+        password: "109",
+      },
+      { name: "robertod", rule: "am", password: "110" },
+      { name: "corlos", rule: "am", password: "111" },
+      { name: "marap", rule: "am", password: "113" },
+      { name: "valentinad", rule: "am", password: "114" },
+    ],
     screens_det: [
       { screen: 1, seats: 134 },
       { screen: 2, seats: 134 },
